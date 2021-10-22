@@ -4,6 +4,7 @@ from itertools import groupby
 import constants as c
 import numpy as np
 
+
 class XMLConverter:
 
     @staticmethod
@@ -29,7 +30,7 @@ class XMLConverter:
                 note = None
 
                 if next_child_tag == 'grace':
-                    note = ds.Grace(1, staff, False, 0, location, ds.Pitch(0,0,0))
+                    note = ds.Grace(1, staff, False, 0, location, ds.Pitch(0, 0, 0))
                 elif next_child_tag == 'cue':
                     pass
                 else:
@@ -66,4 +67,3 @@ class XMLConverter:
         for key, group in groupby(notes, key=lambda note: note.position):
             moments.append(ds.Moment(list(group), key))
         return moments
-

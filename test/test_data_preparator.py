@@ -13,8 +13,8 @@ class Test(TestCase):
         print(input_data)
 
     def get_test_score_parts(self):
-        return [ds.ScorePart(self.get_test_measures(1)),
-                ds.ScorePart(self.get_test_measures(2))]
+        return [ds.ScorePart('test', self.get_test_measures(1)),
+                ds.ScorePart('test2', self.get_test_measures(2))]
 
     def get_test_measures(self, part_number):
         return [ds.Measure(self.get_test_moments(part_number * 10 + 1)),
