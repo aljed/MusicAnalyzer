@@ -53,8 +53,8 @@ class Moment:
 
     def encode(self):
         encoded = [0] * c.INPUT_MAX_DEPTH
-        encoded[0] = self.location
-        index = 0
+        #encoded[0] = self.location
+        index = -1
         for note in self.notes:
             index += 1
             if index == c.INPUT_MAX_DEPTH:
