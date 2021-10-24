@@ -11,9 +11,9 @@ class Pitch:
 
     def encode(self) -> int:
         if self.alter is not None:
-            return self.octave * 12 + self.step + round(self.alter)
+            return self.step + round(self.alter)
         else:
-            return self.octave * 12 + self.step
+            return self.step
 
 
 @dataclass
@@ -52,16 +52,18 @@ class Moment:
     location: int
 
     def encode(self):
-        encoded = [0] * c.INPUT_MAX_DEPTH
+        encoded = np.zeros(c.INPUT_MAX_DEPTH)
         #encoded[0] = self.location
-        index = -1
+        # index = -1
         for note in self.notes:
-            index += 1
-            if index == c.INPUT_MAX_DEPTH:
-                break
+            # index += 1
+            # if index == c.INPUT_MAX_DEPTH:
+            #     break
             encoded_note = note.encode()
-            encoded[index] = encoded_note
-        return np.array(encoded)
+            if encoded_note == 0:
+                continue
+            encoded[encoded_note] = 1
+        return encoded
 
 
 @dataclass

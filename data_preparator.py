@@ -12,6 +12,11 @@ def get_input_data(score_parts: list[ds.ScorePart]) -> np.ndarray:
     chunked_score_parts = np.concatenate(list(map(lambda score_part: make_chunks(score_part), encoded_score_parts)))
     return np.reshape(chunked_score_parts, (-1, c.INPUT_MAX_WIDTH, c.INPUT_MAX_DEPTH))
 
+# Prepares input data in right shape according to hyperparameters, ready to feed it into a model
+def get_input_data2(score_parts: list[ds.ScorePart]) -> np.ndarray:
+    encoded_score_parts = list(map(lambda score_part: score_part.encode(), score_parts))
+    chunked_score_parts = np.concatenate(list(map(lambda score_part: make_chunks(score_part), encoded_score_parts)))
+    return np.reshape(chunked_score_parts, (-1, c.INPUT_MAX_WIDTH, c.INPUT_MAX_DEPTH))
 
 # splits input data into chunks of the same size
 def make_chunks(part: np.ndarray) -> np.ndarray:
